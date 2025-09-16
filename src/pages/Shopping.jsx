@@ -1,11 +1,16 @@
 import roomsvg from "/roomtype/1.png";
+import leftarrow from "/icon/arrow-prev.svg";
+import { obj } from "../store/shopping-data";
 
 function Shopping() {
   return (
     <div className="flex">
       <div className="relative inline-block">
-        <img src={roomsvg} />
+        <img src={roomsvg} alt="roomsvg" />
         <div className="absolute inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
+          <div className="pr-[9px] pt-[2px]">
+            <img src={leftarrow} alt="leftarrow" />
+          </div>
           <p className="text-sm" style={{ color: "#38470B" }}>
             查看其他房型
           </p>
@@ -13,18 +18,29 @@ function Shopping() {
       </div>
 
       <div>
-        <h2>1人・ 單人床・ 附早餐・衛浴1間・18平方公尺</h2>
-        <span>
-          平日（一～四）價格：1380 / 假日（五〜日）價格：1500
-          入住時間：15：00（最早）/ 21：00（最晚） 退房時間：10：00
-        </span>
-        <p>
-          ・單人間僅供一位客人使用。 ・臥室配有單人床和私人浴室。
-          ・您需要的一切為您準備：床單和毯子，毛巾，肥皂和洗髮水，吹風機。
-          ・房間裡有AC，當然還有WiFi。
-        </p>
+        <ShoppingRight />
       </div>
     </div>
+  );
+}
+
+function ShoppingRight() {
+  return (
+    <>
+      <h2 className="text-4xl">{obj.name}</h2>
+      <p>{obj.subTitle}</p>
+      <p>{obj.roomInfo}</p>
+      <p>{obj.description}</p>
+      {obj.icon.map((item) => {
+        return (
+          <div>
+            <img src={item.imgUrl} alt={item.name} />
+            <p>{item.name}</p>
+            <img src={item.smallImgUrl} alt="" />
+          </div>
+        );
+      })}
+    </>
   );
 }
 
