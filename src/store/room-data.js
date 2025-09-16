@@ -13,7 +13,7 @@ export const roomData = [
     price: 1380,
     description:
       "1人・ 單人床・附早餐・ 衛浴1間・18平方公尺 平日（一～四）價格：1380 / 假日（五〜日）價格：1500",
-    image: [wifi, pets, air_shaft, breakfast, refrigerator, phone, no_smoke],
+    image: [breakfast, wifi, phone, refrigerator, pets, no_smoke, air_shaft],
   },
 ];
 
