@@ -30,19 +30,57 @@ const Checkout = () => {
             </form>
           </div>
           <div className="w-3/5 text-black">
-            {roomData.map((item) => {
-              return (
-                <div>
-                  <h2>{item.name}</h2>
-                  <p>{item.description}</p>
-                  <div className="flex flex-row">
-                    {item.image.map((image) => {
-                      return <img src={image} alt="" />;
-                    })}
-                  </div>
+            <div>
+              <h2>{roomData[0].name}</h2>
+              <p>{roomData[0].description}</p>
+              <div className="flex flex-row">
+                {roomData[0].image.map((image) => {
+                  return <img src={image} alt="" />;
+                })}
+              </div>
+              <div>
+                <h2>訂房資訊</h2>
+                {defaultRoomInfo.roomInfo.map((info) => {
+                  return <p>{info}</p>;
+                })}
+              </div>
+              <div>
+                <h2>預約流程</h2>
+                <div className="flex flex-row">
+                  {defaultRoomInfo.reserveFlow.map((flow) => {
+                    console.log(flow.id);
+                    console.log(defaultRoomInfo.reserveFlow);
+                    if (flow.id < defaultRoomInfo.reserveFlow.length) {
+                      return (
+                        <div className="flex flex-row">
+                          <div className="flex flex-col">
+                            <div className="w-full">
+                              <img src={flow.img} alt="" />
+                            </div>
+                            <div>
+                              <p>{flow.content}</p>
+                            </div>
+                          </div>
+                          <div>
+                            <img src={defaultRoomInfo.arrowImg} alt="" />
+                          </div>
+                        </div>
+                      );
+                    }
+                    return (
+                      <div className="flex flex-col">
+                        <div className="w-full ">
+                          <img src={flow.img} alt="" />
+                        </div>
+                        <div>
+                          <p>{flow.content}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
         </div>
       </div>

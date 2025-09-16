@@ -5,6 +5,7 @@ import breakfast from "/icon/breakfast.svg";
 import refrigerator from "/icon/refrigerator.svg";
 import phone from "/icon/phone.svg";
 import no_smoke from "/icon/no-smoke.svg";
+import arrow_next from "/icon/arrow-next.svg";
 
 export const roomData = [
   {
@@ -41,4 +42,5 @@ export const defaultRoomInfo = {
         "入住當日憑訂房通知 以現金或刷卡付款即可 (僅接受VISA.JCB.銀聯卡)",
     },
   ],
+  arrowImg: arrow_next,
 };
