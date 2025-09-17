@@ -1,27 +1,10 @@
 import { Link } from "react-router-dom";
-
-const imgList = [
-    [   
-        "/roomtype/home-1.png",
-        "/roomtype/home-2.png",
-        "/roomtype/home-3.png",
-        "/roomtype/home-4.png",
-        "/roomtype/home-5.png",
-        "/roomtype/home-6.png"
-    ],
-
-    [
-        "Single Room",
-        "Double Room",
-        "Twin Room",
-        "Deluxe Single Room",
-        "Deluxe Double Room",
-        "Deluxe Twin Room"
-    ]
-]
-
+import { roomList } from "../store/home-data";
+import { hotelInfo } from "../store/home-data";
 
 const Home = () => {
+    const { hotelTitle, address, phone, email } = hotelInfo[0];
+
     return (
         <>
             {/* 背景圖 */}
@@ -33,22 +16,22 @@ const Home = () => {
                         <div className="flex flex-col justify-between ">
                             <img src="/icon/board.svg" alt="icon" className="" />
                             <div className="flex flex-col text-[#ffffff]">
-                                <p className="text-[12px] mb-[16px]">好室旅店。HOUSE HOTEL</p>
+                                <p className="text-[12px] mb-[16px]">{ hotelTitle }</p>
                                 <div className="flex flex-col gap-[6px] text-[12px] font-light">
-                                    <span>花蓮縣花蓮市國聯一路1號</span>
-                                    <span>03-8321155</span>
-                                    <span>HOUSE@HOTEL.COM</span>
+                                    <span>{ address }</span>
+                                    <span>{ phone }</span>
+                                    <span>{ email }</span>
                                 </div>
                             </div>
                         </div>
                         <div className="grid grid-cols-3 ">
-                            {imgList[0].map((item, index) => {
+                            {roomList.map(({roomId , image, roomTitle}) => {
                                 return (
-                                    <Link to="/Shopping" key={index} className="relative group">
-                                        <img src={item} alt={`圖${index + 1}`} className="aspect-square" />
+                                    <Link to="/Shopping" key={roomId} className="relative group">
+                                        <img src={ image } alt={ roomTitle } className="aspect-square" />
                                         <div className="absolute inset-0 bg-[#38470B]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                                             <span className="text-[19px] text-[#ffffff]">
-                                                {imgList[1][index]}
+                                                { roomTitle }
                                             </span>
                                         </div>
                                     </Link >
