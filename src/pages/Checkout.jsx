@@ -2,7 +2,7 @@ import { useForm, Controller, useWatch } from "react-hook-form";
 import { roomData, defaultRoomInfo } from "../store/room-data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Title = ({ fontSize, title, isBigger = false }) => {
   return (
@@ -24,8 +24,8 @@ const ReserveFlowCard = () => {
         const isLastCard = flow.id === defaultRoomInfo.reserveFlow.length;
 
         return (
-          <>
-            <div className="flex flex-col justify-start  max-w-[300px] w-full border border-[#38470B] rounded-b-xl min-h-[200px]">
+          <React.Fragment key={flow.id}>
+            <div className="flex flex-col justify-start  max-w-[300px] w-full border border-[#38470B] rounded-b-xl h-[180px]">
               <div className="w-full py-3 bg-[#38470B] flex justify-center">
                 <img
                   className="max-w-[40px] aspect-square object-contain w-full"
@@ -46,14 +46,14 @@ const ReserveFlowCard = () => {
                 />
               </div>
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </div>
   );
 };
 
-const Form = ({ setReserveSuccess }) => {
+const Form = ({ setReserveSuccess, setReserveFail }) => {
   const {
     register,
     handleSubmit,
@@ -83,8 +83,13 @@ const Form = ({ setReserveSuccess }) => {
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 1000));
-    console.log(data);
-    setReserveSuccess(true);
+    try {
+      console.log(data);
+      setReserveSuccess(true);
+    } catch (error) {
+      setReserveFail(true);
+      console.log(error);
+    }
   };
 
   return (
@@ -180,7 +185,7 @@ const Form = ({ setReserveSuccess }) => {
         <div className="flex flex-col items-end py-5">
           <p className="block">總計</p>
           <h2 className="block text-2xl">
-            ${(roomData[0].price * (nights - 1)).toLocaleString()}
+            ${(roomData[0].price * nights).toLocaleString()}
           </h2>
         </div>
 
@@ -199,8 +204,52 @@ const Form = ({ setReserveSuccess }) => {
   );
 };
 
+const ReserveResult = ({ reserveFail }) => {
+  return (
+    <div className="flex flex-col items-center justify-center text-white w-full h-full bg-[#38470B]">
+      <div className="relative w-[124px] h-[124px]">
+        <img
+          className="iconImg w-[124px] h-[124px] scale-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          src="/icon/board.svg"
+          alt="board"
+        />
+        {reserveFail ? (
+          <img
+            className="iconImg absolute scale-300  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            src="/icon/cancelB.svg"
+            alt="ok"
+          />
+        ) : (
+          <img
+            className="iconImg absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            src="/icon/okB.svg"
+            alt="ok"
+          />
+        )}
+      </div>
+      <div className="flex flex-col items-center justify-center gap-10 pt-10">
+        <h2 className="text-6xl">預約{reserveFail ? "失敗" : "成功"}</h2>
+
+        {reserveFail ? (
+          <p className="text-center">
+            哎呀！晚了一步！您預約的日期已經被預約走了，
+            <br /> 再看看其它房型吧
+          </p>
+        ) : (
+          <p className="text-center">
+            請留意簡訊發送訂房通知，入住當日務必出示此訂房通知，
+            <br />
+            若未收到簡訊請來電確認，謝謝您
+          </p>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const Checkout = () => {
   const [reserveSuccess, setReserveSuccess] = useState(false);
+  const [reserveFail, setReserveFail] = useState(false);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -209,32 +258,14 @@ const Checkout = () => {
         } mx-25 my-18 flex flex-row`}
       >
         {reserveSuccess ? (
-          <div className="flex flex-col items-center justify-center text-white w-full h-full bg-[#38470B]">
-            <div className="relative w-[124px] h-[124px]">
-              <img
-                className="iconImg w-[124px] h-[124px] scale-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                src="/icon/board.svg"
-                alt="board"
-              />
-              <img
-                className="iconImg absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                src="/icon/okB.svg"
-                alt="ok"
-              />
-            </div>
-            <div className="flex flex-col items-center justify-center gap-10 pt-10">
-              <h2 className="text-6xl">預約成功</h2>
-              <p className="text-center">
-                請留意簡訊發送訂房通知，入住當日務必出示此訂房通知，
-                <br />
-                若未收到簡訊請來電確認，謝謝您
-              </p>
-            </div>
-          </div>
+          <ReserveResult reserveFail={reserveFail} />
         ) : (
           <div className="flex flex-row w-full h-full">
             <div className="bg-[#38470B] w-2/5 text-white px-20 pb-5 pt-10">
-              <Form setReserveSuccess={setReserveSuccess} />
+              <Form
+                setReserveSuccess={setReserveSuccess}
+                setReserveFail={setReserveFail}
+              />
             </div>
             <div className="w-3/5 text-[#38470B] text-sm px-10">
               <div className="flex flex-col">
@@ -245,7 +276,7 @@ const Checkout = () => {
                 />
                 {roomData[0].description.map((item) => {
                   return (
-                    <p className="py-1">
+                    <p key={item} className="py-1">
                       {item}
                       <br />
                     </p>
@@ -254,7 +285,10 @@ const Checkout = () => {
                 <div className="flex flex-row">
                   {roomData[0].image.map((image) => {
                     return (
-                      <div className="flex flex-col justify-center">
+                      <div
+                        key={image.name}
+                        className="flex flex-col justify-center"
+                      >
                         <img
                           className="iconImg block"
                           src={image.url}
@@ -270,7 +304,11 @@ const Checkout = () => {
                 <div>
                   <Title fontSize="text-lg" title="訂房資訊" />
                   {defaultRoomInfo.roomInfo.map((info) => {
-                    return <p className="py-1">{info}</p>;
+                    return (
+                      <p key={info} className="py-1">
+                        {info}
+                      </p>
+                    );
                   })}
                 </div>
                 <div>
