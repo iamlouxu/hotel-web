@@ -17,3 +17,14 @@
     @apply object-cover;
   }
 }
+.swiper-pagination-bullet {
+  background: #fff !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 11px !important;
+}
+
+
+.swiper-pagination-bullet-active {
+
+}

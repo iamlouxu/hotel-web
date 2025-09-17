@@ -40,3 +40,22 @@ export const hotelInfo = [
         email: "HOUSE@HOTEL.COM"
     }
 ]
+
+export const bgList = [
+    {
+        bgId: 1,
+        bgImage: "/background/home-bg-pic1.png"
+    },
+    {
+        bgId: 2,
+        bgImage: "/background/home-bg-pic2.png"
+    },
+    {
+        bgId: 3,
+        bgImage: "/background/home-bg-pic3.png"
+    },
+    {
+        bgId: 4,
+        bgImage: "/background/home-bg-pic4.png"
+    },
+]
