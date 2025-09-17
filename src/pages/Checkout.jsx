@@ -75,7 +75,6 @@ const Form = ({ setReserveSuccess, setReserveFail }) => {
   const [nights, setNights] = useState(0);
   useEffect(() => {
     if (checkIn && checkOut) {
-      console.log(checkIn, checkOut);
       const days = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
       setNights(days);
     }
@@ -247,13 +246,18 @@ const ReserveResult = ({ reserveFail }) => {
   );
 };
 
-const Checkout = () => {
+const Checkout = ({ setIsBooking }) => {
   const [reserveSuccess, setReserveSuccess] = useState(false);
   const [reserveFail, setReserveFail] = useState(false);
+
+  const handleClose = () => {
+    setIsBooking(false);
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed bg-white/50 inset-0 z-50 flex items-center justify-center">
       <div
-        className={`absolute p-5 inset-0 ${
+        className={`absolute inset-0 ${
           reserveSuccess ? "bg-[#38470B]" : "bg-white"
         } mx-25 my-18 flex flex-row`}
       >
@@ -322,10 +326,10 @@ const Checkout = () => {
         )}
         <div>
           <button
-            className={`group cursor-pointer w-5 h-5 flex items-center justify-center ${
+            className={`group cursor-pointer m-3 w-5 h-5 flex items-center justify-center ${
               reserveSuccess ? "bg-[#38470B]" : "hover:bg-[#38470B]"
             } hover:rounded-xl transition-all duration-200`}
-            onClick={() => {}}
+            onClick={handleClose}
           >
             <img
               src="/icon/cancelC.svg"
