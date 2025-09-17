@@ -6,40 +6,54 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { addDays } from "date-fns";
 import { useState } from "react";
 import { DateRangePicker } from "react-date-range";
+import Checkout from "./Checkout";
 function Shopping() {
+  const [isBooking, setIsBooking] = useState(false);
+  const handleBooking = () => {
+    setIsBooking(true);
+  };
   return (
-    <div className="flex">
-      <div className="relative cursor-pointer">
-        <img src={roomsvg} alt="roomsvg" />
-        <div className="absolute inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
-          <div className="pr-[9px] pt-[2px]">
-            <img src={leftarrow} alt="leftarrow" />
+    <>
+      {isBooking ? (
+        <Checkout isBooking={isBooking} setIsBooking={setIsBooking} />
+      ) : (
+        ""
+      )}
+      <div className="flex">
+        <div className="relative cursor-pointer">
+          <img src={roomsvg} alt="roomsvg" />
+          <div className="absolute inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
+            <div className="pr-[9px] pt-[2px]">
+              <img src={leftarrow} alt="leftarrow" />
+            </div>
+            <p className="text-sm" style={{ color: "#38470B" }}>
+              查看其他房型
+            </p>
           </div>
-          <p className="text-sm" style={{ color: "#38470B" }}>
-            查看其他房型
-          </p>
+          <div className="absolute top-1/2 left-62 -translate-x-1/2 mt-3">
+            <p className="text-4xl" style={{ color: "#38470B" }}>
+              $1,380
+            </p>
+          </div>
+          <div className="absolute top-[52%] left-[55%]">
+            <p className="text-xl" style={{ color: "#38470B" }}>
+              / 1晚
+            </p>
+          </div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-15 bg-[#38470B] w-63 h-11 flex items-center justify-center">
+            <button className="text-xl text-white" onClick={handleBooking}>
+              Booking now
+            </button>
+          </div>
         </div>
-        <div className="absolute top-1/2 left-62 -translate-x-1/2 mt-3">
-          <p className="text-4xl" style={{ color: "#38470B" }}>
-            $1,380
-          </p>
-        </div>
-        <div className="absolute top-[52%] left-[55%]">
-          <p className="text-xl" style={{ color: "#38470B" }}>
-            / 1晚
-          </p>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-15 bg-[#38470B] w-63 h-11 flex items-center justify-center">
-          <p className="text-xl text-white">Booking now</p>
-        </div>
-      </div>
 
-      <div>
-        <ShoppingRight />
-        <ShoppingIcon />
-        <Calendar />
+        <div>
+          <ShoppingRight />
+          <ShoppingIcon />
+          <Calendar />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
