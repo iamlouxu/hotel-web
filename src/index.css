@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC:wght@200..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
   box-sizing: border-box;
@@ -15,6 +14,9 @@
   }
   img {
     @apply object-cover;
+  }
+  .iconImg {
+    @apply max-w-[80px] aspect-square p-3 object-contain;
   }
 }
 .swiper-pagination-bullet {
