@@ -5,8 +5,8 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { addDays } from "date-fns";
 import { useState } from "react";
-import { DateRangePicker } from "react-date-range";
 import Checkout from "./Checkout";
+import { DateRange } from "react-date-range";
 function Shopping() {
   const [isBooking, setIsBooking] = useState(false);
   const handleBooking = () => {
@@ -71,7 +71,7 @@ function ShoppingRight() {
           </p>
         </div>
       </div>
-      <div className="mt-[70px] ml-[30px]">
+      <div className="mt-[20px] ml-[30px]">
         {obj.roomInfo.map((item, index) => {
           return (
             <p key={index} className="text-[14px]" style={{ color: "#38470B" }}>
@@ -103,7 +103,7 @@ function ShoppingRight() {
 
 function ShoppingIcon() {
   return (
-    <div className="grid grid-cols-7 gap-[40px] ml-[30px] mt-[56px]">
+    <div className="grid grid-cols-7 gap-[20px] ml-[30px] mt-[56px]">
       {obj.icon.map((item, index) => {
         return (
           <div className="relative" key={index}>
@@ -131,19 +131,22 @@ function Calendar() {
     },
   ]);
   return (
-    <DateRangePicker
-      onChange={(item) => setState([item.selection])}
-      showSelectionPreview={true}
-      moveRangeOnFirstSelection={false}
-      months={2}
-      ranges={state}
-      direction="horizontal"
-      preventSnapRefocus={true}
-      calendarFocus="backwards"
-      showDateDisplay={false}
-      staticRanges={[]}
-      inputRanges={[]}
-    />
+    <div className="ml-10 mt-5">
+      <p className="pb-2 text-[#38470B]">空房狀態查詢</p>
+      <DateRange
+        onChange={(item) => setState([item.selection])}
+        moveRangeOnFirstSelection={false}
+        months={2}
+        ranges={state}
+        direction="horizontal"
+        preventSnapRefocus={true}
+        showDateDisplay={false}
+        staticRanges={[]}
+        inputRanges={[]}
+        className="border-2 border-[#38470B] p-4"
+      />
+      <p className="pt-2 text-[#949C7C]">重新選取</p>
+    </div>
   );
 }
 
