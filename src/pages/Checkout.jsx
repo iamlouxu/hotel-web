@@ -75,7 +75,6 @@ const Form = ({ setReserveSuccess, setReserveFail }) => {
   const [nights, setNights] = useState(0);
   useEffect(() => {
     if (checkIn && checkOut) {
-      console.log(checkIn, checkOut);
       const days = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
       setNights(days);
     }
