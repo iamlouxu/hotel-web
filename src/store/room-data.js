@@ -24,6 +24,7 @@ export const roomData = [
       { url: no_smoke, name: "全面禁菸" },
       { url: air_shaft, name: "空調" },
     ],
+    reservationInfo: "2天，1晚平日",
   },
 ];
 
