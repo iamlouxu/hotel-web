@@ -18,20 +18,20 @@ const Home = () => {
                             <div className="flex flex-col text-[#ffffff]">
                                 <p className="text-[12px] mb-[16px]">{hotelTitle}</p>
                                 <div className="flex flex-col gap-[6px] text-[12px] font-light">
-                                    <span>{address}</span>
-                                    <span>{phone}</span>
-                                    <span>{email}</span>
+                                    <span>{ address }</span>
+                                    <span>{ phone }</span>
+                                    <span>{ email }</span>
                                 </div>
                             </div>
                         </div>
                         <div className="grid grid-cols-3 ">
                             {roomList.map(({ roomId, image, roomTitle }) => {
                                 return (
-                                    <Link to="/Shopping" key={roomId} className="relative group">
-                                        <img src={image} alt={roomTitle} className="aspect-square" />
+                                    <Link to="/Shopping" key={ roomId } className="relative group">
+                                        <img src={ image } alt={ roomTitle } className="aspect-square" />
                                         <div className="absolute inset-0 bg-[#38470B]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                                             <span className="text-[19px] text-[#ffffff]">
-                                                {roomTitle}
+                                                { roomTitle }
                                             </span>
                                         </div>
                                     </Link >
@@ -40,7 +40,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="flex justify-between w-full pl-[30px]">
-                        <div className="text-[#FFFFFF] pagination-position"></div>
+                        <div className="pagination-position"></div>
                         <p className="text-[12px] text-[#FFFFFF] font-light">UI DESIGN by Pei-Chuan Li</p>
                     </div>
                 </div>
