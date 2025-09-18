@@ -14,10 +14,8 @@ function Shopping() {
   };
   return (
     <>
-      {isBooking ? (
+      {isBooking && (
         <Checkout isBooking={isBooking} setIsBooking={setIsBooking} />
-      ) : (
-        ""
       )}
       <div className="flex">
         <div className="relative cursor-pointer">
@@ -46,7 +44,10 @@ function Shopping() {
             </p>
           </div>
           <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-15 bg-[#38470B] w-63 h-11 flex items-center justify-center">
-            <button className="text-xl text-white" onClick={handleBooking}>
+            <button
+              className="text-xl w-full h-full text-white cursor-pointer"
+              onClick={handleBooking}
+            >
               Booking now
             </button>
           </div>

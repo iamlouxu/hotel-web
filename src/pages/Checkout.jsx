@@ -17,6 +17,25 @@ const Title = ({ fontSize, title, isBigger = false }) => {
   );
 };
 
+const DropdownArrow = ({ color = "#444", size = 24 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    style={{ pointerEvents: "none", display: "block" }}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7 10l5 5 5-5"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 const ReserveFlowCard = () => {
   return (
     <div className="flex flex-row w-full items-start h-full">
@@ -25,8 +44,8 @@ const ReserveFlowCard = () => {
 
         return (
           <React.Fragment key={flow.id}>
-            <div className="flex flex-col justify-start  max-w-[300px] w-full border border-[#38470B] rounded-b-xl h-[180px]">
-              <div className="w-full py-3 bg-[#38470B] flex justify-center">
+            <div className="flex flex-col justify-start  max-w-[300px] w-full border border-[#949C7C] rounded-b-xl h-[180px]">
+              <div className="w-full py-3 bg-[#949C7C] flex justify-center">
                 <img
                   className="max-w-[40px] aspect-square object-contain w-full"
                   src={flow.img}
@@ -122,65 +141,79 @@ const Form = ({ setReserveSuccess, setReserveFail }) => {
         {errors.phoneNumber && (
           <p className="text-gray-300">{errors.phoneNumber.message}</p>
         )}
-        <label htmlFor="checkIn" className="py-2">
-          入住日期
-        </label>
-        <Controller
-          id="checkIn"
-          name="checkIn"
-          control={control}
-          render={({ field }) => (
-            <DatePicker
-              className="bg-white text-[#38470B] p-2 w-full"
-              placeholderText="選擇入住日期"
-              selected={field.value}
-              rules={{
-                required: "請選擇入住日期",
-              }}
-              onChange={(date) => {
-                field.onChange(date);
-                if (checkOut && date && checkOut <= date) {
-                  setValue("checkOut", null);
-                }
-              }}
-              dateFormat="yyyy-MM-dd"
-            />
-          )}
-        />
+        <div className="relative flex flex-col">
+          <label htmlFor="checkIn" className="py-2">
+            入住日期
+          </label>
+          <Controller
+            id="checkIn"
+            name="checkIn"
+            control={control}
+            render={({ field }) => (
+              <>
+                <DatePicker
+                  className="bg-white text-[#38470B] p-2 w-full"
+                  placeholderText="選擇入住日期"
+                  selected={field.value}
+                  rules={{
+                    required: "請選擇入住日期",
+                  }}
+                  onChange={(date) => {
+                    field.onChange(date);
+                    if (checkOut && date && checkOut <= date) {
+                      setValue("checkOut", null);
+                    }
+                  }}
+                  dateFormat="yyyy-MM-dd"
+                />
+                <div className="absolute top-3/4 right-2 transform -translate-y-1/2">
+                  <DropdownArrow color="#38470B" size={20} />
+                </div>
+              </>
+            )}
+          />
+        </div>
         {errors.checkIn && (
           <p className="text-gray-300">{errors.checkIn.message}</p>
         )}
-        <label htmlFor="checkOut" className="py-2">
-          退房日期
-        </label>
-        <Controller
-          id="checkOut"
-          name="checkOut"
-          control={control}
-          rules={{
-            required: "請選擇退房日期",
-            validate: (value) =>
-              (checkIn && value > checkIn) || "退房日期必須晚於入住日期",
-          }}
-          render={({ field }) => (
-            <DatePicker
-              className="bg-white text-[#38470B] p-2 w-full"
-              placeholderText="選擇退房日期"
-              selected={field.value}
-              onChange={field.onChange}
-              dateFormat="yyyy-MM-dd"
-              minDate={checkIn}
-              disabled={!checkIn}
-            />
-          )}
-        />
+        <div className="relative flex flex-col">
+          <label htmlFor="checkOut" className="py-2">
+            退房日期
+          </label>
+          <Controller
+            id="checkOut"
+            name="checkOut"
+            control={control}
+            rules={{
+              required: "請選擇退房日期",
+              validate: (value) =>
+                (checkIn && value > checkIn) || "退房日期必須晚於入住日期",
+            }}
+            render={({ field }) => (
+              <>
+                <DatePicker
+                  className="bg-white text-[#38470B] p-2 w-full"
+                  placeholderText="選擇退房日期"
+                  selected={field.value}
+                  onChange={field.onChange}
+                  dateFormat="yyyy-MM-dd"
+                  minDate={checkIn}
+                  disabled={!checkIn}
+                />
+                <div className="absolute top-3/4 right-2 transform -translate-y-1/2">
+                  <DropdownArrow color="#38470B" size={20} />
+                </div>
+              </>
+            )}
+          />
+        </div>
         {errors.checkOut && (
           <p className="text-gray-300">{errors.checkOut.message}</p>
         )}
         <p className="py-2 opacity-50">
           {nights}天，{nights - 1}晚平日
         </p>
-        <hr />
+        <hr className="text-[#949C7C]" />
         <div className="flex flex-col items-end py-5">
           <p className="block">總計</p>
           <h2 className="block text-2xl">
@@ -255,11 +288,15 @@ const Checkout = ({ setIsBooking }) => {
   };
 
   return (
-    <div className="fixed bg-white/50 inset-0 z-50 flex items-center justify-center">
+    <div
+      className="fixed bg-gray-200/80 inset-0 z-50 flex items-center justify-center"
+      onClick={handleClose}
+    >
       <div
         className={`absolute inset-0 ${
           reserveSuccess ? "bg-[#38470B]" : "bg-white"
         } mx-25 my-18 flex flex-row`}
+        onClick={(e) => e.stopPropagation()}
       >
         {reserveSuccess ? (
           <ReserveResult reserveFail={reserveFail} />
@@ -272,7 +309,7 @@ const Checkout = ({ setIsBooking }) => {
               />
             </div>
             <div className="w-3/5 text-[#38470B] text-sm px-10">
-              <div className="flex flex-col">
+              <div className="flex flex-col pt-5">
                 <Title
                   fontSize="text-2xl"
                   title={roomData[0].name}
@@ -286,7 +323,7 @@ const Checkout = ({ setIsBooking }) => {
                     </p>
                   );
                 })}
-                <div className="flex flex-row">
+                <div className="flex flex-row gap-1 py-2">
                   {roomData[0].image.map((image) => {
                     return (
                       <div
@@ -294,11 +331,11 @@ const Checkout = ({ setIsBooking }) => {
                         className="flex flex-col justify-center"
                       >
                         <img
-                          className="iconImg block"
+                          className="iconImg w-[55px] block"
                           src={image.url}
                           alt={image.name}
                         />
-                        <p className="text-center text-sm block">
+                        <p className="text-center text-[#949C7C] text-[10px] block">
                           {image.name}
                         </p>
                       </div>
