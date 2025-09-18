@@ -1,4 +1,3 @@
-import roomsvg from "/roomtype/1.png";
 import leftarrow from "/icon/arrow-prev.svg";
 import { obj } from "../store/shopping-data";
 import "react-date-range/dist/styles.css"; // main css file
@@ -7,6 +6,7 @@ import { addDays } from "date-fns";
 import { useState } from "react";
 import Checkout from "./Checkout";
 import { DateRange } from "react-date-range";
+import { TheSwiper2 } from "../components/Swiper";
 function Shopping() {
   const [isBooking, setIsBooking] = useState(false);
   const handleBooking = () => {
@@ -19,8 +19,13 @@ function Shopping() {
       )}
       <div className="flex">
         <div className="relative cursor-pointer">
-          <img src={roomsvg} alt="roomsvg" />
-          <div className="absolute inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
+          <div className=" w-[500px] h-full">
+            <TheSwiper2 />
+            <div className="absolute left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 z-10">
+              <div className="Shopping-position"></div>
+            </div>
+          </div>
+          <div className="absolute z-10 inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
             <div className="pr-[9px] pt-[2px]">
               <img src={leftarrow} alt="leftarrow" />
             </div>
@@ -28,17 +33,17 @@ function Shopping() {
               查看其他房型
             </p>
           </div>
-          <div className="absolute top-1/2 left-62 -translate-x-1/2 mt-3">
+          <div className="absolute z-10 top-1/2 left-62 -translate-x-1/2 mt-3 pr-22">
             <p className="text-4xl" style={{ color: "#38470B" }}>
               $1,380
             </p>
           </div>
-          <div className="absolute top-[52%] left-[55%]">
+          <div className="absolute z-10 top-[52%] left-[55%]">
             <p className="text-xl" style={{ color: "#38470B" }}>
               / 1晚
             </p>
           </div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 mt-15 bg-[#38470B] w-63 h-11 flex items-center justify-center">
+          <div className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 mt-15 bg-[#38470B] w-63 h-11 flex items-center justify-center">
             <button className="text-xl text-white" onClick={handleBooking}>
               Booking now
             </button>
@@ -59,8 +64,8 @@ function Shopping() {
 function ShoppingRight() {
   return (
     <>
-      <div className="flex gap-[107px] mt-[107px] ml-[30px]">
-        <h2 className="text-[40px]" style={{ color: "#38470B" }}>
+      <div className="flex gap-[107px] mt-[100px] ml-[70px]">
+        <h2 className="text-[40px] font-semibold" style={{ color: "#38470B" }}>
           {obj.name}
         </h2>
         <div className="pt-5">
@@ -69,22 +74,26 @@ function ShoppingRight() {
           </p>
         </div>
       </div>
-      <div className="mt-[20px] ml-[30px]">
+      <div className="mt-[20px] ml-[70px]">
         {obj.roomInfo.map((item, index) => {
           return (
-            <p key={index} className="text-[14px]" style={{ color: "#38470B" }}>
+            <p
+              key={index}
+              className="text-[14px] font-normal"
+              style={{ color: "#38470B" }}
+            >
               {item}
             </p>
           );
         })}
       </div>
-      <div className="mt-[40px] ml-[30px]">
+      <div className="mt-[40px] ml-[70px]">
         <ul style={{ listStyle: "inside" }}>
           {obj.description.map((item, index) => {
             return (
               <li
                 key={index}
-                className="text-[14px]"
+                className="text-[14px] font-light"
                 style={{ color: "#38470B" }}
               >
                 {item}
@@ -101,7 +110,7 @@ function ShoppingRight() {
 
 function ShoppingIcon() {
   return (
-    <div className="grid grid-cols-7 gap-[20px] ml-[30px] mt-[56px]">
+    <div className="grid grid-cols-7 gap-[20px] ml-[50px] mt-[56px]">
       {obj.icon.map((item, index) => {
         return (
           <div className="relative" key={index}>
@@ -129,7 +138,7 @@ function Calendar() {
     },
   ]);
   return (
-    <div className="ml-10 mt-5">
+    <div className="ml-20 mt-5">
       <p className="pb-2 text-[#38470B]">空房狀態查詢</p>
       <DateRange
         onChange={(item) => setState([item.selection])}
