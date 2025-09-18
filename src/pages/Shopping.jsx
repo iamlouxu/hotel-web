@@ -14,10 +14,8 @@ function Shopping() {
   };
   return (
     <>
-      {isBooking ? (
+      {isBooking && (
         <Checkout isBooking={isBooking} setIsBooking={setIsBooking} />
-      ) : (
-        ""
       )}
       <div className="flex">
         <div className="relative cursor-pointer">
