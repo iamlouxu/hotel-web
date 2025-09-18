@@ -1,11 +1,11 @@
-import wifi from "/icon/wifi.svg";
-import pets from "/icon/pets.svg";
-import air_shaft from "/icon/air-shaft.svg";
-import breakfast from "/icon/breakfast.svg";
-import refrigerator from "/icon/refrigerator.svg";
-import phone from "/icon/phone.svg";
-import no_smoke from "/icon/no-smoke.svg";
-import arrow_next from "/icon/arrow-next.svg";
+const wifi = `${import.meta.env.BASE_URL}icon/wifi.svg`;
+const pets = `${import.meta.env.BASE_URL}icon/pets.svg`;
+const air_shaft = `${import.meta.env.BASE_URL}icon/air-shaft.svg`;
+const breakfast = `${import.meta.env.BASE_URL}icon/breakfast.svg`;
+const refrigerator = `${import.meta.env.BASE_URL}icon/refrigerator.svg`;
+const phone = `${import.meta.env.BASE_URL}icon/phone.svg`;
+const no_smoke = `${import.meta.env.BASE_URL}icon/no-smoke.svg`;
+const arrow_next = `${import.meta.env.BASE_URL}icon/arrow-next.svg`;
 
 export const roomData = [
   {
@@ -37,18 +37,18 @@ export const defaultRoomInfo = {
   reserveFlow: [
     {
       id: 1,
-      img: "/icon/booking.svg",
+      img: `${import.meta.env.BASE_URL}icon/booking.svg`,
       content: "送出線上預約單",
     },
     {
       id: 2,
-      img: "/icon/search-chat.svg",
+      img: `${import.meta.env.BASE_URL}icon/search-chat.svg`,
       content:
         "系統立即回覆是否預訂成功 並以簡訊發送訂房通知 (若未收到簡訊請來電確認)",
     },
     {
       id: 3,
-      img: "/icon/payment.svg",
+      img: `${import.meta.env.BASE_URL}icon/payment.svg`,
       content:
         "入住當日憑訂房通知 以現金或刷卡付款即可 (僅接受VISA.JCB.銀聯卡)",
     },

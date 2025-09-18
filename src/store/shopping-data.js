@@ -1,20 +1,21 @@
-import breakfast from "/icon/breakfast.svg";
-import bar from "/icon/poolside-bar.svg";
-import service from "/icon/room-service.svg";
-import wifi from "/icon/wifi.svg";
-import child from "/icon/fit-child.svg";
-import phone from "/icon/phone.svg";
-import views from "/icon/good-views.svg";
-import refrigerator from "/icon/refrigerator.svg";
-import sofa from "/icon/sofa.svg";
-import pets from "/icon/pets.svg";
-import smoke from "/icon/no-smoke.svg";
-import airConditioner from "/icon/air-shaft.svg";
-import cancel from "/icon/cancelA.svg";
-import ok from "/icon/okA.svg";
-import roomtypeA from "/roomtype/roomtypeA.png";
-import roomtypeB from "/roomtype/roomtypeB.png";
-import roomtypeC from "/roomtype/roomtypeC.png";
+const breakfast = `${import.meta.env.BASE_URL}icon/breakfast.svg`;
+const bar = `${import.meta.env.BASE_URL}icon/poolside-bar.svg`;
+const service = `${import.meta.env.BASE_URL}icon/room-service.svg`;
+const wifi = `${import.meta.env.BASE_URL}icon/wifi.svg`;
+const child = `${import.meta.env.BASE_URL}icon/fit-child.svg`;
+const phone = `${import.meta.env.BASE_URL}icon/phone.svg`;
+const views = `${import.meta.env.BASE_URL}icon/good-views.svg`;
+const refrigerator = `${import.meta.env.BASE_URL}icon/refrigerator.svg`;
+const sofa = `${import.meta.env.BASE_URL}icon/sofa.svg`;
+const pets = `${import.meta.env.BASE_URL}icon/pets.svg`;
+const smoke = `${import.meta.env.BASE_URL}icon/no-smoke.svg`;
+const airConditioner = `${import.meta.env.BASE_URL}icon/air-shaft.svg`;
+const cancel = `${import.meta.env.BASE_URL}icon/cancelA.svg`;
+const ok = `${import.meta.env.BASE_URL}icon/okA.svg`;
+
+const roomtypeA = `${import.meta.env.BASE_URL}roomtype/roomtypeA.png`;
+const roomtypeB = `${import.meta.env.BASE_URL}roomtype/roomtypeB.png`;
+const roomtypeC = `${import.meta.env.BASE_URL}roomtype/roomtypeC.png`;
 
 export const obj = {
   name: "Single Room",
