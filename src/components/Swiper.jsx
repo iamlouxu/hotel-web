@@ -33,7 +33,7 @@ export function TheSwiper2() {
       <Swiper
         modules={[Pagination, Autoplay]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        pagination={{ clickable: true, el: ".pagination-position" }}
+        pagination={{ clickable: true, el: ".Shopping-position" }}
         className="absolute inset-0 h-full w-full"
       >
         {obj.roomtype.map((item) => (

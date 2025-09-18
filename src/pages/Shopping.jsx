@@ -24,7 +24,7 @@ function Shopping() {
           <div className=" w-[500px] h-full">
             <TheSwiper2 />
             <div className="absolute left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="pagination-position"></div>
+              <div className="Shopping-position"></div>
             </div>
           </div>
           <div className="absolute z-10 inset-0 flex items-start justify-start pt-[87px] pl-[146px]">
