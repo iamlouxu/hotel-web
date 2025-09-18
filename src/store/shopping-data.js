@@ -12,6 +12,9 @@ import smoke from "/icon/no-smoke.svg";
 import airConditioner from "/icon/air-shaft.svg";
 import cancel from "/icon/cancelA.svg";
 import ok from "/icon/okA.svg";
+import roomtypeA from "/roomtype/roomtypeA.png";
+import roomtypeB from "/roomtype/roomtypeB.png";
+import roomtypeC from "/roomtype/roomtypeC.png";
 
 export const obj = {
   name: "Single Room",
@@ -40,5 +43,10 @@ export const obj = {
     { name: "攜帶寵物", imgUrl: pets, smallImgUrl: ok },
     { name: "全面禁菸", imgUrl: smoke, smallImgUrl: ok },
     { name: "空調", imgUrl: airConditioner, smallImgUrl: ok },
+  ],
+  roomtype: [
+    { id: 1, roomUrl: roomtypeC },
+    { id: 2, roomUrl: roomtypeA },
+    { id: 3, roomUrl: roomtypeB },
   ],
 };
