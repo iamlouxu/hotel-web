@@ -369,7 +369,7 @@ const Checkout = ({ setIsBooking }) => {
             onClick={handleClose}
           >
             <img
-              src="/icon/cancelC.svg"
+              src={`${import.meta.env.BASE_URL}icon/cancelC.svg`}
               alt="cancel"
               className={`transition-all duration-200 ${
                 reserveSuccess
