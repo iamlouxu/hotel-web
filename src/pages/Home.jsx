@@ -49,7 +49,7 @@ const Home = () => {
           </div>
           <div className="flex justify-between w-full pl-[30px]">
             <div className="pagination-position"></div>
-            <p className="text-[12px] text-[#FFFFFF] font-light">
+            <p className="text-[12px] text-[#FFFFFF] font-light  whitespace-nowrap">
               UI DESIGN by Pei-Chuan Li
             </p>
           </div>
